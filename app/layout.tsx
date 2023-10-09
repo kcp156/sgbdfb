@@ -6,6 +6,8 @@ import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Prompt } from 'next/font/google'
+import SupabaseProvider from "./supabase-provider"
+import { PropsWithChildren } from "react"
 
 
 const roboto = Prompt({
@@ -34,8 +36,11 @@ export const metadata: Metadata = {
 interface RootLayoutProps {
   children: React.ReactNode
 }
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  // Layouts must accept a children prop.
+  // This will be populated with nested layouts or pages
+  children
+}: PropsWithChildren) {
   return (
     <>
       <html lang="en" suppressHydrationWarning className={roboto.className}>
@@ -46,6 +51,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
           )}
         >
+          <SupabaseProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -58,6 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div>
             <TailwindIndicator />
           </ThemeProvider>
+          </SupabaseProvider>
         </body>
       </html>
     </>

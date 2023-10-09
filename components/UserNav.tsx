@@ -14,21 +14,29 @@ import {
 } from "./ui/dropdown-menu";
 
 import Link from "next/link";
+import { getSession, getUserDetails, getSubscription } from "@/app/supabase-server";
+import SignOutButton from "./SignOutButton";
+import UserImage from "./user-image";
 
-export default function UserNav() {
+export default async function UserNav() {
+  const [session, userDetails, subscription] = await Promise.all([
+    getSession(),
+    getUserDetails(),
+    getSubscription()
+  ]);
+
+  const user = session?.user;
   return (
     <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-        <Avatar className="h-9 w-9 ">
-          <AvatarImage src="/01.jpg" alt="AV" />
-          <AvatarFallback>AV</AvatarFallback>
-        </Avatar>
+<UserImage/>
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-56" align="end" forceMount>
       <DropdownMenuLabel className="font-normal">
-       lll
+       <p>{userDetails?.full_name}</p>
+       <p className=" text-xs text-muted-foreground">{session?.user.email}</p>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
@@ -53,10 +61,7 @@ export default function UserNav() {
 
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
-      <DropdownMenuItem >
-      <ExitIcon className="mr-2 h-4 w-4" />
-      <span>Log out</span>
-      </DropdownMenuItem>
+<SignOutButton/>
     </DropdownMenuContent>
   </DropdownMenu>
 
