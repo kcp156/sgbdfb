@@ -6,7 +6,7 @@ import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileNav } from "@/components/mobile-nav"
-import UserNav from "./UserNav"
+
 
 export function SiteHeader() {
   return (
@@ -20,7 +20,7 @@ export function SiteHeader() {
           </div>
           <nav className="flex items-center space-x-2">
             <ThemeToggle />
-            <UserNav/>
+           
           </nav>
         </div>
       </div>
