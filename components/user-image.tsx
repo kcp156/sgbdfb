@@ -18,6 +18,6 @@ export default async function UserImage() {
     <AvatarImage src={userDetails.avatar_url} alt="AV" />
     <AvatarFallback>AV</AvatarFallback>
   </Avatar>
-     ):('')
+     )
 }
 
