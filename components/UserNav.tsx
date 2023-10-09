@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 import { getSession, getUserDetails, getSubscription } from "@/app/supabase-server";
 import SignOutButton from "./SignOutButton";
-import UserImage from "./user-image";
+
 
 export default async function UserNav() {
   const [session, userDetails, subscription] = await Promise.all([
@@ -30,7 +30,7 @@ export default async function UserNav() {
     <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-<UserImage/>
+
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-56" align="end" forceMount>
