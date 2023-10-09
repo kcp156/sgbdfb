@@ -16,7 +16,6 @@ export default async function UserImage() {
   return userDetails?.avatar_url ? (
     <Avatar className="h-9 w-9 ">
     <AvatarImage src={userDetails.avatar_url} alt="AV" />
-    <AvatarFallback>AV</AvatarFallback>
   </Avatar>
      )
 }
